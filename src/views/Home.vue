@@ -2,6 +2,7 @@
   <main v-if="!loading" class="home">
     <DataTitle :text="title" :dataDate="dataDate" />
     <DataBoxes :stats=stats />
+    <CountrySelect @get-country="getCountryData" :countries="countries"/>
   </main>
   <main v-else class="flex flex-col align-center justify-center text-center">
     <div class="text-gray-500 text-3xl mt-10 mb-6">
@@ -14,12 +15,14 @@
 <script>
 import DataTitle from '@/components/DataTitle.vue'
 import DataBoxes from '@/components/DataBoxes.vue'
+import CountrySelect from '@/components/CountrySelect.vue'
 
 export default {
   name: 'Home',
   components: {
     DataTitle,
-    DataBoxes
+    DataBoxes,
+    CountrySelect
   },
   data() {
     return {
@@ -40,7 +43,11 @@ export default {
       const data = await res.json()
       // Return the JavaScript object
       return data
-    }
+    },
+    getCountryData(countryData){
+      this.stats = countryData
+      this.title = countryData.country
+    },
   },
   async created() {
     // Once the application has fully loaded, fetch the summary data
