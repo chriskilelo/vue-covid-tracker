@@ -3,6 +3,8 @@
     <DataTitle :text="title" :dataDate="dataDate" />
     <DataBoxes :stats=stats />
     <CountrySelect @get-country="getCountryData" :countries="countries"/>
+    <button v-if="stats.country" @click="clearCountryData"
+    class="bg-green-700 text-white rounded w-full p-3 mt-10 md:w-1/2 lg:w-1/3 focus:outline-none hover:bg-green-600">Clear Country</button>
   </main>
   <main v-else class="flex flex-col align-center justify-center text-center">
     <div class="text-gray-500 text-3xl mt-10 mb-6">
@@ -48,6 +50,14 @@ export default {
       this.stats = countryData
       this.title = countryData.country
     },
+    async clearCountryData(){
+      this.loading = true
+      const data = await this.fetchCovidData()
+      this.title = 'Global'
+      this.stats = data.global
+      this.loading = false
+    }
+
   },
   async created() {
     // Once the application has fully loaded, fetch the summary data
