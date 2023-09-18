@@ -1,6 +1,7 @@
 <template>
   <main v-if="!loading" class="home">
-    <DataTitle :text=title :dataDate=dataDate />
+    <DataTitle :text="title" :dataDate="dataDate" />
+    <DataBoxes :stats=stats />
   </main>
   <main v-else class="flex flex-col align-center justify-center text-center">
     <div class="text-gray-500 text-3xl mt-10 mb-6">
@@ -11,18 +12,21 @@
 </template>
 
 <script>
-import DataTitle from '@/components/DataTitle'
+import DataTitle from '@/components/DataTitle.vue'
+import DataBoxes from '@/components/DataBoxes.vue'
+
 export default {
   name: 'Home',
   components: {
-    DataTitle
+    DataTitle,
+    DataBoxes
   },
   data() {
     return {
       loading: true,
       title: 'Global',
       dataDate: '',
-      status: {},
+      stats: {},
       countries: [],
       loadingImage: require('../assets/hourglass.gif')
 
@@ -43,7 +47,7 @@ export default {
     const data = await this.fetchCovidData()
     // Assign the internal variables to the data items on the JavaScript Object returned
     this.dataDate = data.date
-    this.status = this.global
+    this.stats = data.global
     this.countries = data.countries
     // Application loading compete, set the loading status to false
     this.loading = false
