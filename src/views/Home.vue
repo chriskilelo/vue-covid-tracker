@@ -1,6 +1,6 @@
 <template>
   <main v-if="!loading" class="home">
-    JESUS IS LORD
+    <DataTitle :text=title :dataDate=dataDate />
   </main>
   <main v-else class="flex flex-col align-center justify-center text-center">
     <div class="text-gray-500 text-3xl mt-10 mb-6">
@@ -11,10 +11,12 @@
 </template>
 
 <script>
-
+import DataTitle from '@/components/DataTitle'
 export default {
   name: 'Home',
-  components: {},
+  components: {
+    DataTitle
+  },
   data() {
     return {
       loading: true,
@@ -40,7 +42,7 @@ export default {
     // Once the application has fully loaded, fetch the summary data
     const data = await this.fetchCovidData()
     // Assign the internal variables to the data items on the JavaScript Object returned
-    this.dataDate = data.dataDate
+    this.dataDate = data.date
     this.status = this.global
     this.countries = data.countries
     // Application loading compete, set the loading status to false
