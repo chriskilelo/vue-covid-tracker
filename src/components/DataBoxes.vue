@@ -7,11 +7,11 @@
             </h3>
             <div class="text-2xl mb-4">
                 <span class="font-bold">New: </span>
-                {{ stats.new_confirmed }}
+                {{ formatNumbers(stats.new_confirmed) }}
             </div>
             <div class="text-2xl mb-4">
                 <span class="font-bold">Total: </span>
-                {{ stats.total_confirmed }}
+                {{ formatNumbers(stats.total_confirmed) }}
             </div>
         </div>
         <!-- Recoveries Box -->
@@ -21,11 +21,11 @@
             </h3>
             <div class="text-2xl mb-4">
                 <span class="font-bold">New: </span>
-                {{ stats.new_recovered }}
+                {{ formatNumbers(stats.new_recovered) }}
             </div>
             <div class="text-2xl mb-4">
                 <span class="font-bold">Total: </span>
-                {{ stats.total_recovered }}
+                {{ formatNumbers(stats.total_recovered) }}
             </div>
         </div>
     </div>
@@ -34,6 +34,11 @@
 <script>
 export default {
     name: 'DataBoxes',
-    props: ['stats']
+    props: ['stats'],
+    methods:{
+        formatNumbers(number2format) {
+            return number2format.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')
+        }
+    },
 }
 </script>
