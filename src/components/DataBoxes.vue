@@ -1,7 +1,7 @@
 <template>
     <div class="grid md:grid-cols-2 gap-4">
         <!-- Cases Box -->
-        <div class="shadow-md bg-blue-100 p-10 text-center rounded">
+        <div class="shadow-md bg-blue-100 p-10 text-center rounded hover:drop-shadow-lg">
             <h3 class="text-3xl text-blue-900 font-bold mb-4">
                 Cases
             </h3>
@@ -15,7 +15,7 @@
             </div>
         </div>
         <!-- Recoveries Box -->
-        <div class="shadow-md bg-blue-200 p-10 text-center rounded">
+        <div class="shadow-md bg-blue-200 p-10 text-center rounded hover:drop-shadow-lg">
             <h3 class="text-3xl text-blue-900 font-bold mb-4">
                 Recoveries
             </h3>
