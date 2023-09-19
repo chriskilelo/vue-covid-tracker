@@ -49,6 +49,7 @@ export default {
     getCountryData(countryData){
       this.stats = countryData
       this.title = countryData.country
+      this.dataDate = countryData.date
     },
     async clearCountryData(){
       this.loading = true
